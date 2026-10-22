@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>消息认证与 AEAD · Authentication &amp; AEAD</title>
+<meta name="description" content="[技术域] 消息认证与 AEAD · d10-auth-aead · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d10-auth-aead/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d10-auth-aead/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d10-auth-aead/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"消息认证与 AEAD","description":"[技术域] 消息认证与 AEAD · d10-auth-aead · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d10-auth-aead/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>消息认证与 AEAD</span></nav>
+<article class="ent">
+  <h1>消息认证与 AEAD</h1>
+  
+  <p class="lead">[技术域] 消息认证与 AEAD · d10-auth-aead · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d10-auth-aead/">消息认证与 AEAD</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>消息认证与 AEAD（Authentication &amp; AEAD）</h1>
+<p>&gt; 技术域 d10</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：消息认证与 AEAD：光加密不够——还须<strong>认证</strong>（完整性 + 来源）。MAC/HMAC 用密钥给消息盖戳，接收方可验签防篡改；AEAD（GCM、ChaCha20-Poly1305）把加密与认证合成一步，同时给机密性与完整性，是现代 TLS 的默认姿势。</p>
+<p><strong>English</strong>: Authentication &amp; AEAD: encryption alone is not enough — you also need <strong>authentication</strong> (integrity + origin). MAC/HMAC stamps a message with a key so the receiver can detect tampering; AEAD (GCM, ChaCha20-Poly1305) fuses encryption and authentication into one step, delivering confidentiality and integrity together — the modern TLS default.</p>
+<h2>算法 / 协议</h2>
+<h3>认证加密 AEAD（Authenticated Encryption）</h3>
+<p><strong>中文</strong>：只有加密没有认证的密文，改一位你也不知道。对比两种方案对同一比特翻转的结局：裸加密 → 接收方解出被篡改的明文且毫无察觉；Encrypt-then-MAC → 标签对不上，当场拒收。顺序本身也是学问：MAC-then-Encrypt（先签后加）曾让 TLS 1.0 时代饱受 padding-oracle 之苦——现代答案是一个原子里同时完成两者的 AEAD（GCM/ChaCha20-Poly1305）。</p>
+<p><strong>English</strong>: Ciphertext without authentication lets a bit-flip slip through unnoticed. Compare both schemes under the same bit flip: raw encryption → receiver decrypts tampered plaintext with zero suspicion; Encrypt-then-MAC → tag mismatch, rejected on sight. Order matters too: MAC-then-Encrypt plagued TLS 1.0 with padding oracles — the modern answer is AEAD (GCM / ChaCha20-Poly1305), doing both in one atomic primitive.</p>
+<h3>可交互算法（Workshop）</h3>
+<ul>
+<li><code>hmac</code> · <strong>HMAC-SHA256（密钥哈希）</strong>（HMAC-SHA256 (keyed)）· 密钥：密钥词 / Key word，默认 <code>KEY</code></li>
+</ul>
+<h2>术语</h2>
+<h3>Message Authentication Code (MAC)（消息认证码）</h3>
+<ul>
+<li>中文：用共享密钥给消息算出的短校验标签，接收方重算比对即可发现任何篡改；它保证「消息没被动过」，但证明不了「是谁发的」。</li>
+<li>English: A short tag computed from a message with a shared secret key; recomputing and comparing it reveals any tampering. It proves a message is unchanged, but not who sent it.</li>
+<li>为什么重要：用密钥生成密文指纹，验证来源与完整。</li>
+<li>现实哪里用：TLS、文件完整性。</li>
+<li>怎么被破：密钥泄露即可伪造 MAC。</li>
+<li>游戏：<code>spotdiff</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>HMAC</h3>
+<ul>
+<li>中文：1996 年基于哈希函数（如 SHA-256）构造的 MAC，安全性几乎不依赖哈希的实现细节；TLS、JWT、API 签名里到处是它的身影。</li>
+<li>English: A 1996 MAC built on top of a hash function such as SHA-256, whose security barely depends on the hash&#39;s implementation details. It appears everywhere: TLS, JWT, and API signing.</li>
+<li>为什么重要：用哈希构造 MAC 的标准方法，简单可靠。</li>
+<li>现实哪里用：API 签名、JWT。</li>
+<li>怎么被破：哈希本身被破则 MAC 破。</li>
+<li>游戏：<code>spotdiff</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Poly1305</h3>
+<ul>
+<li>中文：与 ChaCha20 配对的一次性消息认证码，速度快且常数时间。ChaCha20-Poly1305 是 TLS 1.3 的主力 AEAD 套件。</li>
+<li>English: A fast one-time authenticator paired with ChaCha20. ChaCha20-Poly1305 is TLS 1.3&#39;s primary AEAD suite.</li>
+<li>为什么重要：伯斯廷设计的极快认证标签，配 ChaCha20。</li>
+<li>现实哪里用：Signal、TLS。</li>
+<li>怎么被破：无已知破法，密钥重用会泄露。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>KMAC / cSHAKE</h3>
+<ul>
+<li>中文：SHA-3 海绵构造的可定制家族：cSHAKE 加上下文与功能名、KMAC 把它升级为密钥 MAC——为密码学提供「域分离」的原生工具。</li>
+<li>English: The customizable SHA-3 sponge family: cSHAKE adds context and function names, KMAC turns it into a keyed MAC — giving domain separation natively.</li>
+<li>为什么重要：新一代可变长认证标签（NIST 标准）。</li>
+<li>现实哪里用：后量子时代的认证。</li>
+<li>怎么被破：无已知破法。</li>
+<li>章节：modern</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li>（无）</li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>hashlab</code> · 哈希雪崩实验室</li>
+<li><code>spotdiff</code> · 找茬破译</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/algorithms/gcm/">GCM 伽罗瓦计数器模式</a><i>算法</i></li><li><a href="/algorithms/ccm/">CCM 计数器 CBC 模式</a><i>算法</i></li><li><a href="/algorithms/ocb/">OCB 偏移密码块模式</a><i>算法</i></li><li><a href="/algorithms/siv/">SIV 确定性认证加密</a><i>算法</i></li><li><a href="/algorithms/cmac/">CMAC 分组密码 MAC</a><i>算法</i></li><li><a href="/algorithms/gmac/">GMAC 认证模式</a><i>算法</i></li><li><a href="/algorithms/cmc/">CMC 带密文 MAC</a><i>算法</i></li><li><a href="/algorithms/eax/">EAX 认证加密</a><i>算法</i></li><li><a href="/algorithms/cwc/">CWC 携带式工作组密码</a><i>算法</i></li><li><a href="/algorithms/kmac/">KMAC 基于散列的 MAC</a><i>算法</i></li><li><a href="/events/event-aead-2004/">GCM 成为 TLS 标准</a><i>事件</i></li><li><a href="/events/event-lucky13-2013/">Lucky Thirteen 攻击</a><i>事件</i></li><li><a href="/standards/fips198-1/">键控散列消息认证码</a><i>标准</i></li><li><a href="/standards/sp800-38b/">CMAC 认证模式</a><i>标准</i></li><li><a href="/standards/sp800-38c/">CCM 认证与保密模式</a><i>标准</i></li><li><a href="/standards/sp800-38d/">GCM 与 GMAC 模式</a><i>标准</i></li><li><a href="/standards/iso9797-1/">块密码 MAC</a><i>标准</i></li><li><a href="/standards/ieee8021ae/">MACsec 链路加密</a><i>标准</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

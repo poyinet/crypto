@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>量子密码 · Quantum Cryptography</title>
+<meta name="description" content="[技术域] 量子密码 · d21-quantum-crypto · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d21-quantum-crypto/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d21-quantum-crypto/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d21-quantum-crypto/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"量子密码","description":"[技术域] 量子密码 · d21-quantum-crypto · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d21-quantum-crypto/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>量子密码</span></nav>
+<article class="ent">
+  <h1>量子密码</h1>
+  
+  <p class="lead">[技术域] 量子密码 · d21-quantum-crypto · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d21-quantum-crypto/">量子密码</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>量子密码（Quantum Cryptography）</h1>
+<p>&gt; 技术域 d21</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：量子密码：用物理（而非计算困难）保证安全。量子密钥分发（QKD，如 BB84）让窃听本身就被<strong>测不准原理</strong>暴露——窃听即扰动、扰动即发现。它解决密钥分发，不替代公钥算法；是「换掉地基」而非「打补丁」。</p>
+<p><strong>English</strong>: Quantum cryptography: security from physics, not computational hardness. Quantum key distribution (QKD, e.g. BB84) makes eavesdropping itself detectable via the <strong>uncertainty principle</strong> — to observe is to perturb, and perturb is to be caught. It solves key distribution, not public-key substitution; it &quot;changes the foundation,&quot; not a patch.</p>
+<h2>算法 / 协议</h2>
+<p>（本域暂无独立工坊算法 / 协议演示，可玩实现见下方「关联游戏」）</p>
+<h2>术语</h2>
+<h3>Quantum Cryptography（量子密码）</h3>
+<ul>
+<li>中文：量子密码。利用量子力学原理（如不可克隆定理）保证安全的密码技术，典型是量子密钥分发（QKD），理论上可证明安全，但工程实现仍有挑战。</li>
+<li>English: Cryptographic techniques built on quantum mechanics, notably quantum key distribution (QKD), which exploits properties such as the no-cloning theorem to detect eavesdropping. It offers provable security in theory, though practical deployment faces engineering challenges.</li>
+<li>为什么重要：用量子物理做加密，安全性靠物理定律。</li>
+<li>现实哪里用：QKD、量子网络。</li>
+<li>怎么被破：是方向，不是单一算法。</li>
+<li>游戏：<code>qkd-sim</code></li>
+<li>章节：quantum</li>
+</ul>
+<h3>BB84</h3>
+<ul>
+<li>中文：1984 年贝内特与布拉萨德提出的首个实用量子密钥分发协议：发送方随机用两组基编码光子偏振，接收方随机选基测量；基匹配的位构成共享密钥，窃听必然引入约 25% 的误码率而暴露。</li>
+<li>English: The first practical quantum key distribution protocol, proposed by Bennett and Brassard in 1984. The sender encodes photon polarizations in two random bases and the receiver measures in randomly chosen bases; matching positions form a shared key, while any eavesdropper unavoidably injects about 25% errors and gives herself away.</li>
+<li>为什么重要：1984 年第一个量子密钥分发协议，用偏振态传密钥。</li>
+<li>现实哪里用：QKD 的基石。</li>
+<li>怎么被破：窃听必破坏测量（量子不可克隆），会被当场发现。</li>
+<li>游戏：<code>bb84</code></li>
+<li>章节：quantum</li>
+</ul>
+<h3>Quantum Key Distribution (QKD)（量子密钥分发）</h3>
+<ul>
+<li>中文：利用量子力学原理（测不准与不可克隆）在信道上协商密钥的技术：任何窃听都会扰动量子态并留下可检测的误码指纹，安全性由物理定律而非计算复杂度保证。</li>
+<li>English: A technique that negotiates keys over a channel using quantum mechanics (uncertainty and no-cloning): any interception disturbs the quantum states and leaves detectable error fingerprints, so security rests on physical law rather than computational hardness.</li>
+<li>为什么重要：量子密钥分发，物理保证的密钥交换。</li>
+<li>现实哪里用：量子通信网络。</li>
+<li>怎么被破：是协议，实现侧信道可破（如探测器漏洞）。</li>
+<li>游戏：<code>qkd-sim</code></li>
+<li>章节：quantum</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e16-quantum-turn/">量子转折</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/bennett/">查尔斯·贝内特</a></li>
+<li><a href="/people/brassard/">吉尔·布拉萨德</a></li>
+<li><a href="/people/ekert/">阿图尔·埃克特</a></li>
+<li><a href="/people/shor/">彼得·秀尔</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>bb84</code> · BB84 量子密钥</li>
+<li><code>qkd-sim</code> · QKD 密钥分发模拟</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/attacks/shor-algorithm/">肖尔算法</a><i>攻击</i></li><li><a href="/attacks/grover-algorithm/">格罗弗算法</a><i>攻击</i></li><li><a href="/events/event-bb84-1984/">BB84 量子密钥分发</a><i>事件</i></li><li><a href="/events/event-e91-1991/">E91 量子协议</a><i>事件</i></li><li><a href="/events/event-shor-1994/">肖尔算法提出</a><i>事件</i></li><li><a href="/events/event-grover-1996/">格罗弗算法提出</a><i>事件</i></li><li><a href="/theorems/shor-algorithm-theorem/">肖尔算法</a><i>定理</i></li><li><a href="/theorems/grover-algorithm-theorem/">格罗弗算法</a><i>定理</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

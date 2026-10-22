@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>零知识证明 · Zero-knowledge Proofs</title>
+<meta name="description" content="[技术域] 零知识证明 · d15-zkp · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d15-zkp/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d15-zkp/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d15-zkp/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"零知识证明","description":"[技术域] 零知识证明 · d15-zkp · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d15-zkp/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>零知识证明</span></nav>
+<article class="ent">
+  <h1>零知识证明</h1>
+  
+  <p class="lead">[技术域] 零知识证明 · d15-zkp · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d15-zkp/">零知识证明</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>零知识证明（Zero-knowledge Proofs）</h1>
+<p>&gt; 技术域 d15</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：零知识证明：证明者向验证者证明「我知道某事」，却<strong>不泄露</strong>任何额外信息（经典的 3-着色例子）。它是区块链隐私（ZK-SNARKs）、身份认证、区块链扩容的理论基石——把「证明知识」与「透露知识」彻底解耦。</p>
+<p><strong>English</strong>: Zero-knowledge proofs: a prover convinces a verifier &quot;I know X&quot; while revealing <strong>no</strong> extra information (the classic 3-coloring example). They underpin blockchain privacy (ZK-SNARKs), identity authentication, and blockchain scaling — decoupling &quot;proving knowledge&quot; from &quot;revealing knowledge.&quot;</p>
+<h2>算法 / 协议</h2>
+<h3>零知识证明（图三着色）（Zero-Knowledge Proofs）</h3>
+<p><strong>中文</strong>：证明者宣称自己知道这张图的合法三着色，但不想泄露它。协议：每轮把三种颜色随机改名（承诺）→ 验证者随机挑一条边 → 只揭开这条边两端（应答）。端点永远异色 ⇒ 通过；每轮换名 ⇒ 验证者拼不出完整着色。重复 n 轮，作弊被识破的概率指数上升，而「知识」零泄露。</p>
+<p><strong>English</strong>: Prover claims knowledge of a valid 3-coloring without revealing it. Each round: randomly rename the three colors (commit) → verifier picks a random edge → only those two ends are revealed (response). Ends always differ ⇒ pass; renaming every round ⇒ the verifier cannot assemble the full coloring. After n rounds cheating gets exponentially unlikely while zero knowledge leaks.</p>
+<h2>术语</h2>
+<p>（本域在 282 术语表中无独立条目，相关概念见「概念」节与「关联人物」）</p>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/goldwasser/">莎菲耶·戈德瓦瑟</a></li>
+<li><a href="/people/micali/">西尔维奥·米卡利</a></li>
+<li><a href="/people/rackoff/">查尔斯·拉科夫</a></li>
+<li><a href="/people/chaum/">大卫·肖姆</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li>（无）</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/algorithms/sigma-protocol/">Sigma 协议</a><i>算法</i></li><li><a href="/algorithms/fiat-shamir/">Fiat-Shamir 启发式</a><i>算法</i></li><li><a href="/algorithms/groth16/">Groth16 证明系统</a><i>算法</i></li><li><a href="/algorithms/plonk/">PLONK 通用证明系统</a><i>算法</i></li><li><a href="/algorithms/bulletproofs/">Bulletproofs 简洁证明系统</a><i>算法</i></li><li><a href="/algorithms/halo2/">Halo2 证明系统</a><i>算法</i></li><li><a href="/events/event-zeroknowledge-1985/">零知识证明提出</a><i>事件</i></li><li><a href="/theorems/fiat-shamir-heuristic/">Fiat-Shamir 启发式</a><i>定理</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

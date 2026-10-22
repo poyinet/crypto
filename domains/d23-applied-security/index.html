@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>应用安全工程 · Applied Security Engineering</title>
+<meta name="description" content="[技术域] 应用安全工程 · d23-applied-security · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d23-applied-security/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d23-applied-security/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d23-applied-security/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"应用安全工程","description":"[技术域] 应用安全工程 · d23-applied-security · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d23-applied-security/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>应用安全工程</span></nav>
+<article class="ent">
+  <h1>应用安全工程</h1>
+  
+  <p class="lead">[技术域] 应用安全工程 · d23-applied-security · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d23-applied-security/">应用安全工程</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>应用安全工程（Applied Security Engineering）</h1>
+<p>&gt; 技术域 d23</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：应用安全工程：算法之外才是真战场——口令强度（熵 = 字符集 × 长度）、argon2id 内存困难哈希、供应链完整性、零信任。再强的算法被 <code>password123</code> 和一次钓鱼点击击穿，「安全」是系统属性不是组件属性。</p>
+<p><strong>English</strong>: Applied security engineering: the real battlefield is outside the algorithm — password strength (entropy = charset × length), argon2id memory-hard hashing, supply-chain integrity, zero trust. Even the strongest algorithm falls to <code>password123</code> and one phishing click; &quot;security&quot; is a system property, not a component property.</p>
+<h2>算法 / 协议</h2>
+<h3>口令破解成本（Password Cracking Cost）</h3>
+<p><strong>中文</strong>：穷举时间 = 组合数 ÷ 每秒尝试数。拖动长度、勾选字符集、换算法与装备——你会看到：对抗快哈希时「长度」几乎就是一切；而 Argon2 这类内存困难算法能把百万卡集群打回原形。（速率为公开基准的量级估算，用于建立直觉）</p>
+<p><strong>English</strong>: Time = combinations ÷ guesses per second. Drag length, tick charsets, swap algorithms and rigs — against fast hashes, length is nearly everything; memory-hard Argon2 drags a million-GPU farm back to earth. (Rates are order-of-magnitude estimates from public benchmarks, for intuition.)</p>
+<h2>术语</h2>
+<h3>Format-Preserving Encryption (FPE)（格式保留加密）</h3>
+<ul>
+<li>中文：加密后密文与明文保持相同格式（如 16 位卡号仍为 16 位数字），让旧系统无需改动字段就能存下密文。</li>
+<li>English: Encryption in which the ciphertext keeps the same format as the plaintext (a 16-digit card number stays 16 digits), so legacy systems can store ciphertext without changing fields.</li>
+<li>为什么重要：加密后保持原格式（如卡号仍是 16 位数字）。</li>
+<li>现实哪里用：银行卡、身份证加密。</li>
+<li>怎么被破：格式保留会泄露统计规律，需限制输入。</li>
+<li>游戏：<code>sm4</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Password Manager（口令管理器）</h3>
+<ul>
+<li>中文：用一个强主口令加密保管所有站点随机口令的工具（如 KeePassXC/Bitwarden）。它把「记住 N 个口令」降为「记住 1 个」，让每站唯一长随机口令成为现实。</li>
+<li>English: A tool that stores every site&#39;s unique random password under one strong master secret (KeePassXC, Bitwarden...). It turns &quot;remember N passwords&quot; into &quot;remember one,&quot; making per-site long random secrets practical.</li>
+<li>为什么重要：用强随机密码+加密存储管理所有账号。</li>
+<li>现实哪里用：密码管理工具。</li>
+<li>怎么被破：主密码弱或设备被破即破。</li>
+<li>游戏：<code>password-vault</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Supply Chain Attack（供应链攻击）</h3>
+<ul>
+<li>中文：不直接攻目标，而攻目标的「原料」：篡改上游依赖包、编译器、构建流水线或硬件固件，让被攻者亲手把后门装进自己系统。历史大案：SolarWinds（2020，篡改更新通道）、XZ Utils 后门（2024，投毒开源依赖）、3CX 事件。</li>
+<li>English: Attack the ingredients, not the target: tamper with upstream packages, compilers, build pipelines or firmware so the victim installs the backdoor by themselves. Landmark cases: SolarWinds (2020, poisoned update channel), the XZ Utils backdoor (2024, open-source dependency poisoning), 3CX.</li>
+<li>为什么重要：攻破上游依赖污染下游。</li>
+<li>现实哪里用：软件、硬件供应链。</li>
+<li>怎么被破：靠签名验证、审计防。</li>
+<li>章节：modern</li>
+</ul>
+<h3>Zero-Day（零日漏洞）</h3>
+<ul>
+<li>中文：「零日」指厂商知晓与修补的窗口为零：漏洞被攻击者利用时，厂商还没发现或没补丁——无日志、无特征，防御方只能先假设有鬼。情报界称「令人绝望的对称性」：攻击者只要找到一个 0-day 就能突破一切、且难以探测。</li>
+<li>English: A vulnerability exploited before the vendor knows or patches it — the window is &quot;zero days&quot;. No signatures, no logs: defenders must assume the worst. Intelligence services call it the &quot;kill chain&quot; all the way down: one unpatched flaw breaks any stack, invisibly.</li>
+<li>为什么重要：未公开漏洞，厂商不知，最危险。</li>
+<li>现实哪里用：高级攻击。</li>
+<li>怎么被破：靠补丁、沙箱防。</li>
+<li>章节：modern</li>
+</ul>
+<h3>PRISM &amp; 2013 Surveillance Disclosures（棱镜计划与 2013 年大规模监控披露）</h3>
+<ul>
+<li>中文：2013 年 6 月，前 NSA 承包商爱德华·斯诺登向媒体披露：美国国家安全局通过 PRISM 程序直接从微软、谷歌、雅虎等九大互联网公司服务器拉取数据，另有「上游」拦截与全球监听——引发全球加密使用大潮（HTTPS 比例从 2013 年的约 30% 升至如今 90%+）。</li>
+<li>English: In June 2013 NSA contractor Edward Snowden revealed mass surveillance: direct access to nine internet giants (PRISM), upstream cable interception and global tapping. The fallout pushed HTTPS from ~30% of web traffic in 2013 to over 90% today.</li>
+<li>为什么重要：2013 年曝光的大规模监控计划。</li>
+<li>现实哪里用：安全讨论的里程碑。</li>
+<li>怎么被破：是事件，非算法。</li>
+<li>章节：modern</li>
+</ul>
+<h3>CVE &amp; Vulnerability Management（CVE 与漏洞管理）</h3>
+<ul>
+<li>中文：CVE（通用漏洞与暴露）为每个公开漏洞分配唯一编号（如 CVE-2014-0160 = Heartbleed）；配套 CVSS 打分定严重级、CWE 分类、NVD 数据库聚合。漏洞管理 = 资产清单 × 补丁节奏 × 利用情报，核心是把「被公开利用」的风险压到最小。</li>
+<li>English: The Common Vulnerabilities and Exposures registry gives every disclosed flaw a unique ID (CVE-2014-0160 = Heartbleed); CVSS scores severity, CWE classifies root causes, NVD aggregates it all. Vulnerability management = asset inventory × patch cadence × exploitation intelligence.</li>
+<li>为什么重要：统一编号的漏洞库与修复流程。</li>
+<li>现实哪里用：补丁管理。</li>
+<li>怎么被破：是流程，非算法。</li>
+<li>章节：modern</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e11-ww2/">第二次世界大战</a></li>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/schneier/">布鲁斯·施奈尔</a></li>
+<li><a href="/people/back/">亚当·贝克</a></li>
+<li><a href="/people/clarke/">琼·克拉克</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>password-vault</code> · 口令保险库</li>
+<li><code>sm4</code> · SM4 国密试炼场</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/algorithms/pbkdf2/">PBKDF2 口令派生</a><i>算法</i></li><li><a href="/algorithms/scrypt/">scrypt 内存硬口令派生</a><i>算法</i></li><li><a href="/attacks/credential-stuffing/">凭据填充</a><i>攻击</i></li><li><a href="/attacks/pretexting/">借口欺诈</a><i>攻击</i></li><li><a href="/attacks/shoulder-surfing/">肩窥</a><i>攻击</i></li><li><a href="/history/cn-lindongdai/">林东岱与应用密码学</a><i>中国密码史</i></li><li><a href="/history/cn-1997-commercial/">商用密码管理起步</a><i>中国密码史</i></li><li><a href="/history/cn-2019-cryptlaw/">《密码法》通过</a><i>中国密码史</i></li><li><a href="/history/cn-2023-gm-reg/">《商用密码管理条例》修订</a><i>中国密码史</i></li><li><a href="/history/cn-2023-miangping/">密评管理办法施行</a><i>中国密码史</i></li><li><a href="/events/event-cryptag-2017/">Crypto AG 后门曝光</a><i>事件</i></li><li><a href="/events/event-heartbleed-2014/">心Bleed 漏洞</a><i>事件</i></li><li><a href="/events/event-luat-2016/">Luật 密码法实施</a><i>事件</i></li><li><a href="/events/event-cryptola-2019/">中国密码法施行</a><i>事件</i></li><li><a href="/events/event-gm-1997/">《商用密码管理条例》前身发布</a><i>事件</i></li><li><a href="/events/event-gm-2023/">《商用密码管理条例》修订</a><i>事件</i></li><li><a href="/events/event-ml-eval-2023/">密评管理办法施行</a><i>事件</i></li><li><a href="/events/event-cve-2014-0160/">心Bleed CVE-2014-0160</a><i>事件</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

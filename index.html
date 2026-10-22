@@ -3,61 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>crypto.poyi.net · 密码学知识站（建设中）</title>
-<meta name="description" content="密码学知识站：三维知识晶格，按时代 / 技术 / 人物 / 物证 / 术语 / 标准多维展示，中英同步。">
+<title>密码学知识站 · Cryptography Atlas</title>
+<meta name="description" content="密码学知识站：三维知识晶格，按时代/技术域/应用场景/威胁模型多维展示，中英同步，条目可溯源。">
 <meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/?lang=en">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
-<style>
-  :root{--bg:#0a0a12;--fg:#e8e8f0;--dim:#8a8aa0;--cy:#00f0ff;--mg:#ff2d95}
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(1200px 600px at 50% -10%,#16203a 0%,var(--bg) 60%);color:var(--fg);
-    font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;padding:24px}
-  .box{max-width:640px;text-align:center}
-  h1{font-size:clamp(28px,6vw,48px);margin:0 0 6px;letter-spacing:.02em;
-    background:linear-gradient(92deg,var(--cy),var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .en{font-size:12px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:26px}
-  p{line-height:1.85;color:#b8c6da;font-size:14px}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:26px;text-align:left}
-  .c{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;background:rgba(255,255,255,.03)}
-  .c h2{font-size:14px;margin:0 0 6px;color:var(--cy)}
-  .c small{color:var(--dim);font-size:11.5px;line-height:1.6;display:block}
-  .lattice{margin:26px auto 0;width:180px;height:180px;position:relative}
-  .lattice i{position:absolute;width:7px;height:7px;border-radius:2px;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 3.4s ease-in-out infinite}
-  @keyframes p{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.7);opacity:1}}
-  .foot{margin-top:30px;font-size:11.5px;color:var(--dim)}
-  a{color:var(--cy)}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
+
+
 </head>
-<body>
-<div class="box">
-  <div class="lattice" id="lat"></div>
-  <h1>密码学知识站</h1>
-  <div class="en">crypto.poyi.net · under construction</div>
-  <p>本站是「破译 DECODE ARCADE」知识体系的知识面：把三千年的密码学按
-     <b>时代 / 技术 / 人物 / 物证 / 术语 / 标准</b> 六个维度铺开，逐层钻取，可检索、可溯源、可按学习路径通读。
-     知识源唯一，产物自动发布。</p>
-  <div class="cards">
-    <div class="c"><h2>三维知识晶格</h2><small>19 时代 × 24 技术域 × 实体层，交叉索引</small></div>
-    <div class="c"><h2>多维多层次</h2><small>时代 / 域 / 应用 / 威胁模型 / 难度 / 层级 六轴标注</small></div>
-    <div class="c"><h2>中英同步</h2><small>每条内容双语对齐，术语别名互通</small></div>
-    <div class="c"><h2>可溯源</h2><small>每条实体都有可核查的纯文字出处</small></div>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<section class="hero">
+  <div>
+    <h1>密码学知识晶格</h1>
+    <p class="lead">三千年的加密与破译，按 <b>时代 / 技术域 / 应用场景 / 威胁模型 / 难度 / 层级</b> 六个维度铺开；每条内容都可查、可溯源、可下钻。</p>
+    <div class="stats">
+      <span class="stat"><b>912</b>条知识条目</span>
+      <span class="stat"><b>19</b>个时代</span>
+      <span class="stat"><b>24</b>个技术域</span>
+      <span class="stat"><b>271</b>个子主题</span>
+      <span class="stat"><b>98</b>旗舰级</span>
+    </div>
+    <p class="view-note">七个视角：
+      <a href="/views/crystal/">三维晶格</a> ·
+      <a href="/views/timeline/">编年时间轴</a> ·
+      <a href="/views/tree/">技术树</a> ·
+      <a href="/views/matrix/">交叉矩阵</a> ·
+      <a href="/views/paths/">学习路径</a> ·
+      <a href="/views/sources/">出处总表</a>
+    </p>
   </div>
-  <div class="foot">内容来源：<code>cryptography-decode-history</code> 知识源仓 · 持续构建中<br>
-    主站 <a href="https://poyi.net">poyi.net</a>（密码学 3D 闯关游戏）</div>
-</div>
-<script>
-  var lat = document.getElementById('lat');
-  for (var i = 0; i < 24; i++) {
-    var el = document.createElement('i');
-    var a = i / 24 * Math.PI * 2, r = 60 + (i % 3) * 14;
-    el.style.left = (90 + Math.cos(a) * r - 3.5) + 'px';
-    el.style.top = (90 + Math.sin(a) * r - 3.5) + 'px';
-    el.style.animationDelay = (i * 0.13) + 's';
-    el.style.background = i % 7 === 3 ? '#ff2d95' : i % 7 === 5 ? '#9dff3e' : '#00f0ff';
-    el.style.boxShadow = '0 0 10px ' + el.style.background;
-    lat.appendChild(el);
-  }
-</script>
+  <div>
+    <div class="card"><h3>按类型浏览</h3><div class="chips"><a class="chip" href="/eras/">时代 19</a><a class="chip" href="/domains/">技术域 24</a><a class="chip" href="/people/">人物 87</a><a class="chip" href="/artifacts/">密件 46</a><a class="chip" href="/machines/">机器 7</a><a class="chip" href="/terms/">术语 275</a><a class="chip" href="/algorithms/">算法 104</a><a class="chip" href="/attacks/">攻击 58</a><a class="chip" href="/history/">中国密码史 61</a><a class="chip" href="/events/">事件 83</a><a class="chip" href="/protocols/">协议 40</a><a class="chip" href="/standards/">标准 77</a><a class="chip" href="/theorems/">定理 31</a></div></div>
+    <div class="card"><h3>按场景浏览</h3><div class="chips"><a class="chip" href="/applications/#academic">academic</a><a class="chip" href="/applications/#finance">finance</a><a class="chip" href="/applications/#government">government</a><a class="chip" href="/applications/#everyday">everyday</a><a class="chip" href="/applications/#military">military</a><a class="chip" href="/applications/#telecom">telecom</a><a class="chip" href="/applications/#law-enforcement">law-enforcement</a><a class="chip" href="/applications/#infrastructure">infrastructure</a><a class="chip" href="/applications/#privacy">privacy</a><a class="chip" href="/applications/#health">health</a><a class="chip" href="/applications/#diplomacy">diplomacy</a></div></div>
+    <div class="card"><h3>按威胁模型浏览</h3><div class="chips"><a class="chip" href="/applications/#threat-CCA">CCA</a><a class="chip" href="/applications/#threat-CPA">CPA</a><a class="chip" href="/applications/#threat-CO">CO</a><a class="chip" href="/applications/#threat-statistical">statistical</a><a class="chip" href="/applications/#threat-KPA">KPA</a><a class="chip" href="/applications/#threat-protocol">protocol</a><a class="chip" href="/applications/#threat-network">network</a><a class="chip" href="/applications/#threat-related-key">related-key</a><a class="chip" href="/applications/#threat-side-channel">side-channel</a><a class="chip" href="/applications/#threat-implementation">implementation</a><a class="chip" href="/applications/#threat-adaptive-CCA">adaptive-CCA</a><a class="chip" href="/applications/#threat-social">social</a><a class="chip" href="/applications/#threat-quantum">quantum</a><a class="chip" href="/applications/#threat-physical">physical</a></div></div>
+  </div>
+</section>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+<script src="/assets/common.js"></script>
 </body>
 </html>

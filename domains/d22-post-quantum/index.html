@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>后量子 · Post-Quantum</title>
+<meta name="description" content="[技术域] 后量子 · d22-post-quantum · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d22-post-quantum/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d22-post-quantum/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d22-post-quantum/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"后量子","description":"[技术域] 后量子 · d22-post-quantum · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d22-post-quantum/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>后量子</span></nav>
+<article class="ent">
+  <h1>后量子</h1>
+  
+  <p class="lead">[技术域] 后量子 · d22-post-quantum · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d22-post-quantum/">后量子</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>后量子（Post-Quantum）</h1>
+<p>&gt; 技术域 d22</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：后量子：量子计算机将破掉 RSA/ECC 的数学根（Shor 算法），但<strong>格密码</strong>（基于 LWE/RLWE 的难题）在已知模型下安全。NIST 2024 首批后量子标准 ML-KEM (Kyber)、ML-DSA (Dilithium)、SLH-DSA (SPHINCS+) 是正式上岗的答案；混合方案（经典 + PQ）是过渡默认。</p>
+<p><strong>English</strong>: Post-quantum: a quantum computer breaks the math under RSA/ECC (Shor), but <strong>lattice</strong> problems (LWE/RLWE) remain safe under known models. NIST’s first post-quantum standards — ML-KEM (Kyber), ML-DSA (Dilithium), SLH-DSA (SPHINCS+) — are the answer that has formally entered service; hybrid schemes (classic + PQ) are the transitional default.</p>
+<h2>算法 / 协议</h2>
+<p>（本域暂无独立工坊算法 / 协议演示，可玩实现见下方「关联游戏」）</p>
+<h2>术语</h2>
+<h3>Learning With Errors (LWE)（带错误学习问题（LWE））</h3>
+<ul>
+<li>中文：格密码的「镇山之宝」：给你一堆混着小噪声的线性方程，恢复其中的未知解极其困难，量子计算机也拿它没辙；NIST 选中的 Kyber 等后量子算法都建立在它之上。</li>
+<li>English: The workhorse of lattice cryptography: recovering a secret from noisy linear equations is provably hard, even for quantum computers. NIST&#39;s post-quantum picks like Kyber rest on it.</li>
+<li>为什么重要：带误差的格问题，后量子公钥的数学地基。</li>
+<li>现实哪里用：Kyber、RLWE。</li>
+<li>怎么被破：是新方向，暂无实用破法。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Ring-LWE (RLWE)（环带错误学习（RLWE））</h3>
+<ul>
+<li>中文：LWE 的多项式环版本：密钥更小、运算更快，让格密码从理论变成实用；代价是安全证明依赖环结构，NIST 的后量子标准 Kyber、Dilithium 都是它的模块化近亲。</li>
+<li>English: The polynomial-ring version of LWE, with smaller keys and faster operations that make lattice crypto practical. Its proofs lean on ring structure; NIST&#39;s post-quantum standards Kyber and Dilithium are modular relatives.</li>
+<li>为什么重要：LWE 的环上版本，更高效，催生 Kyber。</li>
+<li>现实哪里用：后量子密钥封装。</li>
+<li>怎么被破：是新方向，暂无实用破法。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>McEliece</h3>
+<ul>
+<li>中文：Robert McEliece 1978 年提出的基于纠错码的公钥密码——50 年未被攻破，但公钥巨大。NIST 后量子候选。</li>
+<li>English: Robert McEliece&#39;s 1978 code-based public-key crypto — unbroken for 50 years but with huge keys. A NIST post-quantum candidate.</li>
+<li>为什么重要：1978 年最早的公钥方案，基于纠错码，抗量子。</li>
+<li>现实哪里用：NIST 后量子候选。</li>
+<li>怎么被破：密钥大，但暂无破法。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Falcon</h3>
+<ul>
+<li>中文：基于格的紧凑后量子签名算法，NIST 后量子签名候选——签名比 Dilithium 小但实现更复杂（需浮点运算）。</li>
+<li>English: A compact lattice-based post-quantum signature, a NIST candidate — smaller signatures than Dilithium but harder to implement (floating-point).</li>
+<li>为什么重要：基于格的后量子签名，NIST 候选。</li>
+<li>现实哪里用：后量子签名。</li>
+<li>怎么被破：是新方向，暂无破法。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：quantum</li>
+</ul>
+<h3>NTRU</h3>
+<ul>
+<li>中文：1996 年公布、2010 年进入 IEEE 标准的格基公钥体制：用多项式环上的小系数交换完成密钥协商，加解密极快且据信抗量子。</li>
+<li>English: A lattice public-key system first published in 1996 and standardized in IEEE 1363: keys exchange over polynomial rings with small coefficients, fast, and believed quantum-resistant.</li>
+<li>为什么重要：基于环格的后量子方案。</li>
+<li>现实哪里用：后量子公钥。</li>
+<li>怎么被破：是新方向，暂无实用破法。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Post-Quantum Hybrids（后量子混合方案）</h3>
+<ul>
+<li>中文：在 NIST 标准未完全稳妥时，把经典与后量子算法叠加的迁移策略：TLS 1.3 用 X25519 + ML-KEM 或其他混合密钥交换组，任一侧被破防，整体仍安全。</li>
+<li>English: The migration strategy of stacking classical and post-quantum algorithms while standards mature: TLS 1.3 carries hybrid groups like X25519+ML-KEM so breaking either side still leaves the session safe.</li>
+<li>为什么重要：经典+后量子双算法叠加，平滑过渡。</li>
+<li>现实哪里用：现有系统升级。</li>
+<li>怎么被破：是新方案，经典部分仍抗。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：quantum</li>
+</ul>
+<h3>SLH-DSA (SPHINCS+)（SLH-DSA（SPHINCS+））</h3>
+<ul>
+<li>中文：NIST FIPS 205 的标准哈希签名：安全性只建立在哈希函数的假设上，无状态、不需要格/编码——签名约 17KB、较慢，是最保守的后量子选择。</li>
+<li>English: NIST&#39;s FIPS 205 hash-based signature: security rests on hash assumptions alone, stateless, no lattices — signatures near 17KB and slow, the most conservative post-quantum pick.</li>
+<li>为什么重要：基于哈希的后量子签名，抗量子。</li>
+<li>现实哪里用：后量子签名标准。</li>
+<li>怎么被破：是签名，哈希被破则破。</li>
+<li>游戏：<code>pqc-match</code></li>
+<li>章节：quantum</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+<li><a href="/eras/e16-quantum-turn/">量子转折</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/regev/">奥德·雷格夫</a></li>
+<li><a href="/people/gentry/">克雷格·金特里</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>pqc-match</code> · 后量子迁移配对</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/algorithms/ntru-pke/">NTRU 公钥加密</a><i>算法</i></li><li><a href="/algorithms/hqc/">HQC 备选 KEM</a><i>算法</i></li><li><a href="/algorithms/bike/">BIKE 备选 KEM</a><i>算法</i></li><li><a href="/algorithms/sike/">SIKE 超椭圆同源 KEM</a><i>算法</i></li><li><a href="/algorithms/ml-dsa/">ML-DSA 格基签名</a><i>算法</i></li><li><a href="/algorithms/mldsa-hash/">HashML-DSA 混合签名</a><i>算法</i></li><li><a href="/algorithms/ml-kem-hybrid/">ML-KEM 混合密钥协商</a><i>算法</i></li><li><a href="/algorithms/lwe/">带误差学习问题</a><i>算法</i></li><li><a href="/algorithms/sivp/">最短独立向量问题</a><i>算法</i></li><li><a href="/attacks/quantum-collision/">量子碰撞搜索</a><i>攻击</i></li><li><a href="/attacks/quantum-resource-estimate/">量子资源估算</a><i>攻击</i></li><li><a href="/history/cn-zhaoyunlei/">赵运磊与后量子密码</a><i>中国密码史</i></li><li><a href="/history/cn-luxianhui/">路献辉与格密码</a><i>中国密码史</i></li><li><a href="/history/cn-2024-pqc/">后量子标准化推进</a><i>中国密码史</i></li><li><a href="/events/event-nist-pqc-2016/">NIST 后量子标准化征集</a><i>事件</i></li><li><a href="/events/event-nist-pqc-2024/">FIPS 203/204/205 发布</a><i>事件</i></li><li><a href="/events/event-kyber-2023/">Kyber 选为后量子标准</a><i>事件</i></li><li><a href="/events/event-sike-2022/">SIKE 被破</a><i>事件</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

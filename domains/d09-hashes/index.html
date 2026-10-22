@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>哈希 · Hash Functions</title>
+<meta name="description" content="[技术域] 哈希 · d09-hashes · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d09-hashes/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d09-hashes/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d09-hashes/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"哈希","description":"[技术域] 哈希 · d09-hashes · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d09-hashes/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>哈希</span></nav>
+<article class="ent">
+  <h1>哈希</h1>
+  
+  <p class="lead">[技术域] 哈希 · d09-hashes · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d09-hashes/">哈希</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>哈希（Hash Functions）</h1>
+<p>&gt; 技术域 d09</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：哈希：单向函数，输入任意长、输出定长摘要，且<strong>碰撞</strong>（两个不同输入同摘要）在计算上不可行。它回答「这文件没被动过」。SHA-1 已被 SHAttered 实际碰撞攻破，SHA-2（SHA-256）与 SHA-3（Keccak 海绵）是现役标准，广泛用于文件校验、证书指纹、区块链。</p>
+<p><strong>English</strong>: Hash functions: one-way, any-length input to fixed-length digest, where a <strong>collision</strong> (two inputs, same digest) is computationally infeasible. They answer &quot;this file is untouched.&quot; SHA-1 fell to real SHAttered collisions; SHA-2 (SHA-256) and SHA-3 (Keccak sponge) are current standards for file checks, certificate fingerprints, and blockchains.</p>
+<h2>算法 / 协议</h2>
+<h3>Merkle 树（Merkle Tree）</h3>
+<p><strong>中文</strong>：改动任何一片叶子（哪怕一个字母），它的哈希立刻变，并且一路向上传染到树根——Merkle 根就是整组数据的指纹。</p>
+<p><strong>English</strong>: Change any single leaf (even one letter) and its hash flips, cascading up to the root — the Merkle root is the fingerprint of the whole set.</p>
+<h3>长度扩展攻击（Length Extension Attack）</h3>
+<p><strong>中文</strong>：SHA-1/MD5 属于 Merkle-Damgård 结构：H(k‖msg) 这种「秘密前缀 MAC」有个致命缺陷——知道一条 msg 和它的 MAC，就能在不知道密钥的情况下，为 msg‖glue‖任意后缀 造出合法 MAC（把内部状态原样接力）。下方用真实 SHA-1 完整复现：伪造出的 MAC 经服务端重算验证通过。防御：用 HMAC（两层结构免疫），或换 SHA-3 这类非 MD 结构。</p>
+<p><strong>English</strong>: SHA-1/MD5 are Merkle-Damgård constructions: a secret-prefix MAC like H(k‖msg) has a fatal flaw — given msg and its MAC, you can forge a valid MAC for msg‖glue‖anything WITHOUT the key, by chaining the internal state forward. Reproduced fully with real SHA-1 below: the forged MAC passes server re-verification. Defenses: HMAC (two-layer, immune) or SHA-3 (non-MD).</p>
+<h3>可交互算法（Workshop）</h3>
+<ul>
+<li><code>sha256</code> · <strong>SHA-256（FIPS 180-4）</strong>（SHA-256 (FIPS 180-4)）· 密钥： / ，默认 ``</li>
+</ul>
+<h2>术语</h2>
+<h3>Cryptographic Hash（密码学哈希）</h3>
+<ul>
+<li>中文：密码学哈希。满足安全性质的哈希函数：单向不可逆、难以找到碰撞、输出看似随机；区别于普通校验和，须能抵抗恶意构造，是安全协议的核心组件。</li>
+<li>English: A hash function meeting cryptographic security properties: preimage resistance, collision resistance, and avalanche behavior. Unlike ordinary checksums, it must withstand adversarial input, making it a core component of signatures, MACs, and integrity verification.</li>
+<li>为什么重要：把任意数据压成定长指纹，篡改即可发现。</li>
+<li>现实哪里用：区块链、校验、签名。</li>
+<li>怎么被破：找碰撞（两个不同输入同哈希）即破。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Salt (Cryptography)（盐）</h3>
+<ul>
+<li>中文：盐。口令哈希前附加的随机数据，使相同口令产生不同哈希值，防止彩虹表攻击与跨站哈希比对，显著提升口令存储安全性。</li>
+<li>English: Random data prepended or appended to a password before hashing so that identical passwords yield different digests. Salting defeats rainbow-table attacks and cross-site password correlation, greatly improving stored-password security.</li>
+<li>为什么重要：加一段随机盐，让相同密码产生不同哈希。</li>
+<li>现实哪里用：所有密码存储。</li>
+<li>怎么被破：无盐则彩虹表直接查，加盐后仍需逐用户重算。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Merkle Tree（默克尔树）</h3>
+<ul>
+<li>中文：把数据块的哈希两两合并、层层向上，最终汇成单一根哈希；只要根哈希不变，任何叶子的篡改都会败露，比特币用它把整块交易压缩成一个根。</li>
+<li>English: A structure that hashes data blocks pairwise up to a single root; any tampering with a leaf is caught at the root. Bitcoin uses it to compress a whole block of transactions into one root hash.</li>
+<li>为什么重要：把数据组织成二叉树，只传根哈希即可校验整块。</li>
+<li>现实哪里用：区块链、Git、大型文件校验。</li>
+<li>怎么被破：根哈希被篡改即整棵树失效。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Proof of Work (PoW)（工作量证明）</h3>
+<ul>
+<li>中文：先完成一件「算起来难、验证起来秒过」的苦力活（比如暴力搜一个满足条件的哈希），才获得记账资格；比特币把出块成本变成攻击成本，中本聪 2008 年将其应用于货币共识。</li>
+<li>English: Requiring a costly but instantly verifiable computation—like searching for a hash with many leading zeros—before earning the right to append a block. Bitcoin (2008) turns that cost into the price of an attack.</li>
+<li>为什么重要：用算力换取记账权，抗女巫攻击。</li>
+<li>现实哪里用：比特币、早期反垃圾。</li>
+<li>怎么被破：算力集中即中心化，可被&quot;51% 攻击&quot;破。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>SHA-3</h3>
+<ul>
+<li>中文：由 NIST 于 2015 年标准化的哈希算法，采用 Keccak 的海绵结构，与 SHA-2 内部设计完全不同，为哈希家族提供了备用选择。</li>
+<li>English: A hash algorithm standardized by NIST in 2015, built on the Keccak sponge construction and sharing no internal design with SHA-2, giving the hash family a backup choice.</li>
+<li>为什么重要：2012 年征集出的抗量子哈希，Keccak 结构。</li>
+<li>现实哪里用：新一代哈希标准。</li>
+<li>怎么被破：无已知破法。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>MD5</h3>
+<ul>
+<li>中文：1991 年 Rivest 设计的 128 位哈希函数，曾是最广泛使用的文件校验与口令摘要算法；2004 年被王小云团队证实可在数小时内构造碰撞，现仅可用于非安全场景。</li>
+<li>English: A 128-bit hash by Ron Rivest (1991), once the default for file checksums and password digests. In 2004 Xiaoyun Wang&#39;s team showed collisions computable in hours; today MD5 is fit only for non-security uses.</li>
+<li>为什么重要：曾经的哈希标准，128 位输出。</li>
+<li>现实哪里用：早期的文件校验、密码存储。</li>
+<li>怎么被破：碰撞攻击 2004 年即被破，不再安全。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>SHA-1</h3>
+<ul>
+<li>中文：NSA 设计、160 位输出的哈希标准，长期支撑代码签名与 TLS 证书；2005 年王小云团队给出理论碰撞攻击，2017 年 Google 与 CWI 以 SHAttered 实际演示——此后浏览器与证书机构全面弃用。</li>
+<li>English: An NSA-designed 160-bit hash standard that long underpinned code signing and TLS certificates. Theoretical collisions came from Xiaoyun Wang&#39;s team in 2005; in 2017 Google and CWI demonstrated SHAttered, and browsers and CAs dropped it for good.</li>
+<li>为什么重要：曾广泛使用的 160 位哈希。</li>
+<li>现实哪里用：早期的 Git、证书。</li>
+<li>怎么被破：2017 年被 Google 用碰撞攻击破。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>Hashcash</h3>
+<ul>
+<li>中文：Adam Back 1997 年的反垃圾方案：发件人须为每封邮件付出少量哈希算力。它是工作量证明的直接祖先，比特币白皮书的第一条引用。</li>
+<li>English: Adam Back&#39;s 1997 anti-spam scheme making senders burn a little hash power per mail — the direct ancestor of proof-of-work and the first citation in Bitcoin&#39;s whitepaper.</li>
+<li>为什么重要：用哈希做工作量证明，最早的反垃圾/反女巫。</li>
+<li>现实哪里用：早期反垃圾邮件。</li>
+<li>怎么被破：算力集中可伪造，非绝对防女巫。</li>
+<li>游戏：<code>blockchain-miner</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>SHA-2</h3>
+<ul>
+<li>中文：NIST 2001 年（标准 FIPS 180-4）修订的标准哈希家族，包含 SHA-224/256/384/512，至今仍是互联网默认哈希。它以 Merkle-Damgård 结构建造，输出的 256 位是其最常用成员。</li>
+<li>English: The NIST family standardized as FIPS 180-4: SHA-224/256/384/512, the internet&#39;s default hashes. Built on Merkle-Damgård chaining, its 256-bit member secures nearly everything.</li>
+<li>为什么重要：现行的哈希标准家族（SHA-256 等）。</li>
+<li>现实哪里用：比特币、TLS、几乎所有系统。</li>
+<li>怎么被破：无已知破法，量子下仍有抵抗。</li>
+<li>游戏：<code>hashlab</code></li>
+<li>章节：modern</li>
+</ul>
+<h3>RIPEMD &amp; Whirlpool（RIPEMD 与 Whirlpool 哈希）</h3>
+<ul>
+<li>中文：两族「非主流但正规」的哈希：RIPEMD 出自 1990 年代欧洲 RIPE 计划（1995，160 位，双管线结构，RIPEMD-160 至今用于 Bitcoin 地址）；Whirlpool 为 2000 年 Rijmen (AES 之父) 与 Barreto 设计的 512 位哈希（基于 AES 精神构造的 8×8 状态盒，入选 ISO/IEC 10118-3）。</li>
+<li>English: Two serious but non-mainstream hash families: RIPEMD from Europe’s RIPE project (1995, 160-bit double-line structure; RIPEMD-160 still secures Bitcoin addresses); Whirlpool, a 512-bit hash by Rijmen (the AES father) and Barreto in 2000, built with an AES-spirited 8×8 state box and listed in ISO/IEC 10118-3.</li>
+<li>为什么重要：SHA 之外的哈希候选，提供多样性。</li>
+<li>现实哪里用：早期多哈希方案。</li>
+<li>怎么被破：RIPEMD 系有弱变体，Whirlpool 无已知破法。</li>
+<li>章节：modern</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/daemen/">约安·达门</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>blockchain-miner</code> · 区块链矿工</li>
+<li><code>hashlab</code> · 哈希雪崩实验室</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

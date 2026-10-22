@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>随机数与 CSPRNG · Randomness &amp; CSPRNG</title>
+<meta name="description" content="[技术域] 随机数与 CSPRNG · d19-randomness · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d19-randomness/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d19-randomness/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d19-randomness/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"随机数与 CSPRNG","description":"[技术域] 随机数与 CSPRNG · d19-randomness · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d19-randomness/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>随机数与 CSPRNG</span></nav>
+<article class="ent">
+  <h1>随机数与 CSPRNG</h1>
+  
+  <p class="lead">[技术域] 随机数与 CSPRNG · d19-randomness · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d19-randomness/">随机数与 CSPRNG</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>随机数与 CSPRNG（Randomness &amp; CSPRNG）</h1>
+<p>&gt; 技术域 d19</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：随机数与 CSPRNG：密码学的地基不是算法，是<strong>随机性</strong>——可预测的种子让一切算法归零。PRNG 快但可预测；CSPRNG（/dev/urandom、BCrypt）用真熵做种，输出不可由内部状态反推。密钥、nonce、盐都必须来自 CSPRNG。</p>
+<p><strong>English</strong>: Randomness &amp; CSPRNG: cryptography’s bedrock is <strong>randomness</strong>, not algorithms — a predictable seed zeroes out every scheme. PRNGs are fast but predictable; CSPRNGs (/dev/urandom, CryptGenRandom) seed from real entropy so output is not reversible from internal state. Keys, nonces, and salts must all come from a CSPRNG.</p>
+<h2>算法 / 协议</h2>
+<h3>随机数与 CSPRNG（Randomness &amp; CSPRNG）</h3>
+<p><strong>中文</strong>：密码学的地基不是算法，是随机数。再强的算法遇上可预测的密钥等于零。本演示用「当前秒数当种子」的普通 LCG 生成一把&quot;随机&quot;密钥——攻击者只需穷举一天之内的 86400 个种子，秒级还原全部输出。V8 的 Math.random（xorshift128+）同样可从连续输出恢复内部状态。密码学必须使用 CSPRNG：种子来自操作系统熵源，且不可观测、不可穷举。</p>
+<p><strong>English</strong>: The foundation of cryptography is not algorithms — it is randomness. The strongest cipher with a predictable key equals zero. This demo generates a &quot;random&quot; key from an ordinary LCG seeded by the current second: an attacker brute-forces just 86,400 seeds per day and reproduces every output. V8&#39;s Math.random (xorshift128+) can likewise have its state recovered from outputs. Cryptography demands a CSPRNG: seeded from OS entropy, unobservable and unenumerable.</p>
+<h2>术语</h2>
+<p>（本域在 282 术语表中无独立条目，相关概念见「概念」节与「关联人物」）</p>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li>（无）</li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li>（无）</li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li>（无）</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/algorithms/trng/">真随机数发生器</a><i>算法</i></li><li><a href="/algorithms/csprng/">密码学安全伪随机数发生器</a><i>算法</i></li><li><a href="/algorithms/lcg/">线性同余发生器</a><i>算法</i></li><li><a href="/algorithms/puf/">物理不可克隆函数</a><i>算法</i></li><li><a href="/events/event-dualec-2013/">Dual_EC_DRBG 后门曝光</a><i>事件</i></li><li><a href="/events/event-sagan-1992/">《女巫的诅咒》与微软随机数</a><i>事件</i></li><li><a href="/standards/sp800-90a/">随机数发生器建议</a><i>标准</i></li><li><a href="/standards/sp800-90b/">熵源建议</a><i>标准</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

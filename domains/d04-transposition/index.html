@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>换位 · Transposition</title>
+<meta name="description" content="[技术域] 换位 · d04-transposition · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d04-transposition/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d04-transposition/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d04-transposition/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"换位","description":"[技术域] 换位 · d04-transposition · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d04-transposition/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>换位</span></nav>
+<article class="ent">
+  <h1>换位</h1>
+  
+  <p class="lead">[技术域] 换位 · d04-transposition · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d04-transposition/">换位</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>换位（Transposition）</h1>
+<p>&gt; 技术域 d04</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：换位：字母<strong>不变</strong>，只改变它们的<strong>排列顺序</strong>（栅栏、斯巴达密码棒、列方）。它不掩盖字母频率，常与替换组合成混合密码——单用换位极易被破，但与替换结合会大幅增加密钥空间。</p>
+<p><strong>English</strong>: Transposition: the letters stay the same, only their <strong>positions</strong> change (rail fence, Spartan scytale, columnar). It hides nothing about letter frequency, so it is usually combined with substitution. Alone it breaks easily; combined it multiplies the key space.</p>
+<h2>算法 / 协议</h2>
+<h3>可交互算法（Workshop）</h3>
+<ul>
+<li><code>rail</code> · <strong>栅栏 Rail Fence</strong>（Rail Fence）· 密钥：轨道数 / Number of rails，默认 <code>3</code></li>
+<li><code>adfgvx</code> · <strong>ADFGVX（替换层）</strong>（ADFGVX (substitution layer)）· 密钥：密钥词 / Key word，默认 <code>CIPHER</code></li>
+<li><code>bifid</code> · <strong>Bifid</strong>（Bifid）· 密钥：密钥词 / Key word，默认 <code>CIPHER</code></li>
+<li><code>trifid</code> · <strong>Trifid</strong>（Trifid）· 密钥： / ，默认 ``</li>
+<li><code>columnar</code> · <strong>列换位 Columnar</strong>（Columnar Transposition）· 密钥：密钥词 / Key word，默认 <code>CIPHER</code></li>
+</ul>
+<h2>术语</h2>
+<h3>Transposition（换位密码）</h3>
+<ul>
+<li>中文：字母不变，只改变它们的排列顺序（如栅栏密码）。</li>
+<li>English: The letters stay the same but are rearranged (as in the rail fence).</li>
+<li>为什么重要：不改变字母、只改变位置，是换位密码的母类。</li>
+<li>现实哪里用：从凯撒盒到 ADF GVX 的换位层。</li>
+<li>怎么被破：位置规律可被统计复原。</li>
+<li>游戏：<code>railfence</code></li>
+<li>章节：ww1</li>
+</ul>
+<h3>Rail Fence（栅栏密码）</h3>
+<ul>
+<li>中文：把明文按锯齿形写进多行，再逐行读出，是最朴素的换位密码。</li>
+<li>English: Plaintext is written in a zigzag across rows, then read off row by row — the plainest transposition.</li>
+<li>为什么重要：按之字形多行写再读出，是最早的换位。</li>
+<li>现实哪里用：教学与信号旗。</li>
+<li>怎么被破：枚举行数 + 已知明文即破。</li>
+<li>游戏：<code>railfence</code></li>
+<li>章节：ww1</li>
+</ul>
+<h3>ADFGVX</h3>
+<ul>
+<li>中文：德军一战的终极密码：6×6 方阵替换 + 密钥列换位的双层加密。</li>
+<li>English: Germany&#39;s WWI ultimate: a 6×6 Polybius substitution plus keyed columnar transposition.</li>
+<li>为什么重要：一战德军的&quot;替换+换位&quot;双层密码，曾被视为不可破。</li>
+<li>现实哪里用：1918 年德军电报。</li>
+<li>怎么被破：替换层被频度分析破，换位层被猜出周期。</li>
+<li>游戏：<code>adfgvx</code></li>
+<li>章节：ww1</li>
+</ul>
+<h3>Bifid Cipher（Bifid 密码）</h3>
+<ul>
+<li>中文：把字母换成 5×5 方格坐标再重组的分块密码。</li>
+<li>English: Letters become grid coordinates, then get shuffled — a blocky substitution.</li>
+<li>为什么重要：用 5×5 表把字母变坐标，再按行重组，是替换+换位混合。</li>
+<li>现实哪里用：近代与教学。</li>
+<li>怎么被破：坐标可被还原，周期可猜。</li>
+<li>游戏：<code>bifid</code></li>
+<li>章节：arab</li>
+</ul>
+<h3>Trifid Cipher（Trifid 密码）</h3>
+<ul>
+<li>中文：3×3×3 立体分块：替换与换位的三维合流。</li>
+<li>English: A 3×3×3 cubic block cipher mixing substitution and transposition.</li>
+<li>为什么重要：双位的扩展，按三维重组，更抗分析。</li>
+<li>现实哪里用：近代。</li>
+<li>怎么被破：同双位，复杂度更高但可破。</li>
+<li>游戏：<code>trifid</code></li>
+<li>章节：arab</li>
+</ul>
+<h3>Scytale（斯巴达密码棒）</h3>
+<ul>
+<li>中文：公元前 5 世纪斯巴达的换位工具：羊皮纸条绕在特定粗细的木棒上书写，解下来即成乱码，只有同粗细木棒能复原。最早的军用换位密码实物。</li>
+<li>English: A fifth-century-BCE Spartan transposition tool: a strip wound around a rod of fixed diameter is written on, and reads as gibberish unwound. Only an identical rod restores it — the earliest physical military cipher.</li>
+<li>为什么重要：古希腊的绕棒换位，是军事口令。</li>
+<li>现实哪里用：斯巴达。</li>
+<li>怎么被破：棒径猜出即破，位置规律暴露。</li>
+<li>游戏：<code>campaign</code></li>
+<li>章节：dawn</li>
+</ul>
+<h3>Double Transposition（双重换位密码）</h3>
+<ul>
+<li>中文：同一明文做两次密钥列换位（第二次用不同密钥写作另一宽度的表格）：字母不变、位置被连续打散——古典密码学里最顽强的换位体系，冷战初期由苏联间谍与荷兰抵抗组织使用。</li>
+<li>English: Two keyed columnar transpositions applied in sequence (second pass with a different key/width): letters unchanged, order scrambled twice — the toughest classical transposition, used by Dutch resistance and early Cold War spies.</li>
+<li>为什么重要：连续两次换位，放大位置复杂度。</li>
+<li>现实哪里用：近代电报。</li>
+<li>怎么被破：两次换位可逐一还原。</li>
+<li>章节：ww1</li>
+</ul>
+<h3>Half-a-Radio（半部电台）</h3>
+<ul>
+<li>中文：1930 年底龙冈战斗缴获的国民党军电台：发报机已坏、收报机尚好——红军用它起监听破译的“家”，随后发展出完整无线电侦察体系；毛泽东评价“半部电台起家”是红军情报工作的起点。</li>
+<li>English: A Kuomintang radio captured at Longgang in late 1930 — transmitter smashed, receiver intact — became the Red Army&#39;s listening and codebreaking &quot;home&quot;, growing into a full signals-intelligence system.</li>
+<li>为什么重要：一战德军&quot;替换+换位&quot;的复合电码。</li>
+<li>现实哪里用：1917 年德军电报。</li>
+<li>怎么被破：被布莱切利园用频度+结构分析破。</li>
+<li>章节：modern</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e01-origins/">古代起源</a></li>
+<li><a href="/eras/e04-arabic-golden-age/">阿拉伯黄金时代</a></li>
+<li><a href="/eras/e09-ww1/">第一次世界大战</a></li>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/jefferson/">托马斯·杰斐逊</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>adfgvx</code> · ADFGVX</li>
+<li><code>bifid</code> · Bifid</li>
+<li><code>campaign</code> · 破译战役</li>
+<li><code>railfence</code> · 栅栏密码</li>
+<li><code>trifid</code> · Trifid 破译机</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/history/cn-fanqie/">反切码</a><i>中国密码史</i></li><li><a href="/events/event-scytale/">斯巴达密码棒</a><i>事件</i></li><li><a href="/events/event-adfgvx-1918/">ADFGVX 电报体制与被破</a><i>事件</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>

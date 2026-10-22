@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>单表替换 · Monoalphabetic Substitution</title>
+<meta name="description" content="[技术域] 单表替换 · d02-monoalphabetic · L2">
+<meta name="theme-color" content="#0a0a12">
+<link rel="canonical" href="https://crypto.poyi.net/domains/d02-monoalphabetic/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crypto.poyi.net/domains/d02-monoalphabetic/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://crypto.poyi.net/domains/d02-monoalphabetic/?lang=en">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"单表替换","description":"[技术域] 单表替换 · d02-monoalphabetic · L2","inLanguage":"zh-CN","url":"https://crypto.poyi.net/domains/d02-monoalphabetic/"}</script>
+</head>
+<body class="">
+
+  <header class="hd">
+    <a class="brand" href="/">密码学知识站</a>
+    <nav class="nv">
+      <a href="/eras/">时代</a>
+      <a href="/domains/">技术域</a>
+      <a href="/terms/">术语</a>
+      <a href="/people/">人物</a>
+      <a href="/artifacts/">密件</a>
+      <a href="/machines/">机器</a>
+      <a href="/algorithms/">算法</a>
+      <a href="/attacks/">攻击</a>
+      <a href="/protocols/">协议</a>
+      <a href="/standards/">标准</a>
+      <a href="/theorems/">定理</a>
+      <a href="/events/">事件</a>
+      <a href="/history/">中国密码史</a>
+      <a href="/views/crystal/">三维晶格</a>
+      <a href="/views/timeline/">时间轴</a>
+      <a href="/views/tree/">技术树</a>
+      <a href="/views/matrix/">交叉矩阵</a>
+      <a href="/views/paths/">学习路径</a>
+      <a href="/views/sources/">出处</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="搜索…（/ 聚焦）" aria-label="search">
+      <button id="lang" type="button" title="switch language">EN</button>
+    </div>
+  </header>
+<main id="main">
+
+<nav class="crumb"><a href="/">首页</a><i>/</i><a href="/domains/">技术域</a><i>/</i><span>单表替换</span></nav>
+<article class="ent">
+  <h1>单表替换</h1>
+  
+  <p class="lead">[技术域] 单表替换 · d02-monoalphabetic · L2</p>
+  <div class="axes"><span class="ax"><b>技术域</b><a href="/domains/d02-monoalphabetic/">单表替换</a></span><span class="ax"><b>难度</b>进阶</span></div>
+  <h1>单表替换（Monoalphabetic Substitution）</h1>
+<p>&gt; 技术域 d02</p>
+<h2>概念</h2>
+<p><strong>中文</strong>：单表替换：每个字母<strong>永远</strong>映射到同一个字母（凯撒是它的特例，整体平移）。因为明文的字母频率是固定的（英文 e 最高），攻击者只需数密文里哪个字母最频繁就能破——<strong>频率分析</strong>是它的死穴。</p>
+<p><strong>English</strong>: Monoalphabetic: every letter maps to the <strong>same</strong> letter forever (Caesar is its special case — a uniform shift). Plaintext letter frequencies are fixed (e is most common in English), so counting the most frequent ciphertext letter breaks it — <strong>frequency analysis</strong> is the fatal flaw.</p>
+<h2>算法 / 协议</h2>
+<h3>可交互算法（Workshop）</h3>
+<ul>
+<li><code>caesar</code> · <strong>凯撒 Caesar</strong>（Caesar Cipher）· 密钥：偏移量 / Shift amount，默认 <code>3</code></li>
+<li><code>affine</code> · <strong>仿射 Affine</strong>（Affine Cipher）· 密钥：a, b（如 5,8） / a, b (e.g. 5,8)，默认 <code>5,8</code></li>
+<li><code>substitution</code> · <strong>单表替换 Substitution</strong>（Monoalphabetic Substitution）· 密钥：26 字母置换表 / 26-letter permutation table，默认 <code>ZYXWVUTSRQPONMLKJIHGFEDCBA</code></li>
+<li><code>bacon</code> · <strong>培根 Bacon</strong>（Bacon Cipher）· 密钥： / ，默认 ``</li>
+</ul>
+<h2>术语</h2>
+<h3>Caesar Cipher（凯撒密码）</h3>
+<ul>
+<li>中文：把字母表整体平移固定位数（凯撒用 3）的替换密码。</li>
+<li>English: A substitution cipher shifting the alphabet by a fixed number (Caesar used 3).</li>
+<li>为什么重要：最古老的替换密码，每个字母往后挪固定格数，是&quot;替换&quot;概念的起点。</li>
+<li>现实哪里用：教学与历史——凯撒本人用偏移 3。</li>
+<li>怎么被破：只有 25 种可能密钥，穷举一遍即破；频度分析更直接。</li>
+<li>游戏：<code>caesar</code></li>
+<li>章节：caesar</li>
+</ul>
+<h3>Substitution（替换密码）</h3>
+<ul>
+<li>中文：每个字母按固定规则换成另一个字母。</li>
+<li>English: Each letter is replaced by another according to a fixed rule.</li>
+<li>为什么重要：用一套新字母表逐位替换，是所有替换密码的母类。</li>
+<li>现实哪里用：凯撒、单表、多表都属&quot;替换&quot;。</li>
+<li>怎么被破：单表替换逃不过频度分析，只有多表能躲开。</li>
+<li>游戏：<code>substitution</code></li>
+<li>章节：caesar, arab</li>
+</ul>
+<h3>Affine Cipher（仿射密码）</h3>
+<ul>
+<li>中文：凯撒的升级版：先乘一个数再加一个数（E=ax+b mod 26）。</li>
+<li>English: An upgrade of Caesar: multiply by a, then add b (E = ax+b mod 26).</li>
+<li>为什么重要：把替换变成乘法+加法 E(x)=ax+b mod 26，是凯撒的数学化。</li>
+<li>现实哪里用：教学里演示&quot;乘数 a 必须与 26 互素&quot;。</li>
+<li>怎么被破：枚举 a（φ(26)=12 个）+ b 暴力即破，或用明密文对解方程。</li>
+<li>游戏：<code>affine</code></li>
+<li>章节：caesar</li>
+</ul>
+<h3>Yinfu Tally Codes（阴符）</h3>
+<ul>
+<li>中文：中国早期军事符信：《六韬》载八种符节，以竹符不同长度对应「见兵」「败军」等八类军情，两半相合为验——不着一字的密码。相传创制于姜太公。</li>
+<li>English: An early Chinese military signal: the Liu Tao records eight tally lengths, each secretly mapping to a situation such as &quot;enemy advancing&quot; or &quot;defeat&quot;. Two halves must match to authenticate — a code with no words at all. Tradition credits Duke Jiang of Qi.</li>
+<li>为什么重要：中国最早的隐写/暗号之一，刻木为符、合之即验。</li>
+<li>现实哪里用：先秦传令。</li>
+<li>怎么被破：符契一旦被仿制即失效，靠形制+暗语保护。</li>
+<li>游戏：<code>acrostic</code></li>
+<li>章节：caesar</li>
+</ul>
+<h3>Yinshu Split Letters（阴书）</h3>
+<ul>
+<li>中文：《六韬》所记拆信术：一封密信拆作三份，由三名信使分道携带，收信人合三为一才能读全——单份被截也无法泄密，是朴素的「分割+冗余」思想。</li>
+<li>English: A split-letter scheme from the Liu Tao: one letter is cut into three parts carried by three messengers on different routes; only recombining all three reveals the message. Any single capture leaks nothing — an early split-and-redundancy design.</li>
+<li>为什么重要：把密文分写在多处，合起来才读得懂，是早期隐写。</li>
+<li>现实哪里用：先秦军情传递。</li>
+<li>怎么被破：分开保管即可防单件泄露，合验即失效。</li>
+<li>游戏：<code>acrostic</code></li>
+<li>章节：caesar</li>
+</ul>
+<h3>Ziyan Code（字验）</h3>
+<ul>
+<li>中文：北宋《武经总要》（1044）所载军用密写法：选一首四十字的诗，以临时约定的密钥字定位其中一字，该字在诗中的位置即对应一份四十项军情清单——每次换钥字即换一套编码。</li>
+<li>English: A Song-dynasty military cipher from the Wujing Zongyao (1044): pick a forty-character poem; a per-message key character selects one poem position, and that position maps to one of forty pre-agreed tactical reports — change the key character and the whole encoding changes.</li>
+<li>为什么重要：预先约定几个&quot;验字&quot;，出现即代表特定含义。</li>
+<li>现实哪里用：宋代军情暗号。</li>
+<li>怎么被破：验字表一旦泄露即失效。</li>
+<li>游戏：<code>codebreak</code></li>
+<li>章节：arab</li>
+</ul>
+<h3>Fanqie Code（反切码）</h3>
+<ul>
+<li>中文：明代戚继光《纪效新书》所载注音密码：取两首诗词的声母与韵母表，「声×韵」交叉组合为汉字编号——与同时代欧洲的多表替换异曲同工，却源自本土音韵学。</li>
+<li>English: A phonetic cipher in Qi Jiguang&#39;s Jixiao Xinshu (1560s): initials from one poem crossed with finals from another number every Chinese character — structurally akin to Europe&#39;s polyalphabetic idea, but grown from native phonology.</li>
+<li>为什么重要：用前字声母+后字韵母拼出新音，是语音替换的雏形。</li>
+<li>现实哪里用：宋代密语。</li>
+<li>怎么被破：约定音表泄露即破。</li>
+<li>游戏：<code>fanqie</code></li>
+<li>章节：bacon</li>
+</ul>
+<h3>Nomenclator（名词码簿）</h3>
+<ul>
+<li>中文：文艺复兴欧洲外交的主流体制：常用音节/人名/地名配码 + 其余字母简单替换的混合密码本。罗斯林伯爵因破译它声名鹊起。</li>
+<li>English: Renaissance Europe&#39;s diplomatic workhorse: a codebook of syllables, names and places layered over simple substitution. Frequency analysis alone could not touch it — until codebook reconstruction did.</li>
+<li>为什么重要：用人名/词名替代字母，本质是&quot;代码&quot;而非&quot;密码&quot;。</li>
+<li>现实哪里用：早期电报与外交。</li>
+<li>怎么被破：词典（nomenclator）落入敌手即全败。</li>
+<li>游戏：<code>nihilist</code></li>
+<li>章节：bacon</li>
+</ul>
+<h3>Great Cipher of Louis XIV（路易十四大密码）</h3>
+<ul>
+<li>中文：罗西尼奥尔父子为法王设计的数字码本：587 个码元代表音节而非字母，且无规律跳变——两百年无人能破，直到巴泽里用「猜音节」战术攻破王室秘密。</li>
+<li>English: The Rossignols&#39; numeric code for Louis XIV: 587 groups standing for syllables, not letters, with irregular jumps. Unbroken for two centuries until Bazeries attacked it syllable by syllable.</li>
+<li>为什么重要：近代最成功的&quot;代码&quot;之一，用上千符号代表词与音节。</li>
+<li>现实哪里用：路易十四的外交电报，安全运行数十年。</li>
+<li>怎么被破：1692 年被维吉尼亚用已知明文+频度分析攻破。</li>
+<li>游戏：<code>detective</code></li>
+<li>章节：ww1</li>
+</ul>
+<h3>Homophonic Substitution（同音替换）</h3>
+<ul>
+<li>中文：给高频字母分配多个替身符号，让相同明文字母出现不同密文字形——字母频率被摊平，单表频率分析对它失效。文艺复兴的密码学家用数字上万种同音码实现它。</li>
+<li>English: High-frequency letters get many aliases so a plaintext letter maps to different ciphertext shapes — frequency histograms flatten and ordinary substitution analysis fails. Renaissance nomenclators implemented it with hundreds of homophones.</li>
+<li>为什么重要：高频字母给多个符号，人为抹平频度曲线。</li>
+<li>现实哪里用：中世纪到近代的外交密码。</li>
+<li>怎么被破：频度仍可统计（只是变慢），多对一关系会暴露。</li>
+<li>游戏：<code>substitution</code></li>
+<li>章节：arab</li>
+</ul>
+<h3>Book Cipher（书籍密码）</h3>
+<ul>
+<li>中文：用一本共享的书作密钥：密文是页码/行号-字号的坐标列表。没有书就完全解不开——史上最著名的是贝灵诺维尔密码（Beale Ciphers）以《独立宣言》为书，第二份密电破出藏宝地点、另两份至今未解；二战英国 SOE 让特工抄一首诗的字母作一次性密钥（诗码），用完即焚。</li>
+<li>English: A shared book is the key: ciphertext lists page/line-word coordinates. Without the book nothing decrypts — the famous Beale Ciphers used the Declaration of Independence as their book (paper #2 solved, #1/#3 still open); in WWII Britain&#39;s SOE gave agents poem codes, one-time keys burnt after use.</li>
+<li>为什么重要：&quot;第几页第几个字&quot;指代内容，是隐写叠加代码。</li>
+<li>现实哪里用：特工传递。</li>
+<li>怎么被破：必须双方持有同版同本书；书泄露即失效。</li>
+<li>游戏：<code>book-cipher</code></li>
+<li>章节：arab</li>
+</ul>
+<h3>Null Cipher（空密码（归零密码））</h3>
+<ul>
+<li>中文：把真假字母混在同一条消息里，只按约定位置抽取真字母。小写、偶数字母、每板第 3 字都是常见约定——与格栅一样属于「藏而不掩」。</li>
+<li>English: Real letters hide inside an innocent message, extracted by position (e.g. lowercase letters, even positions). Like grilles, it hides existence rather than content.</li>
+<li>为什么重要：明文里掺入无意义字，靠约定&quot;忽略哪些&quot;来读。</li>
+<li>现实哪里用：近代外交电报。</li>
+<li>怎么被破：需共享&quot;哪些字是空的&quot;约定，约定泄露即破。</li>
+<li>游戏：<code>bacon</code></li>
+<li>章节：bacon</li>
+</ul>
+<h3>Homophonic with Nomenclator（含名词名表的同音密码）</h3>
+<ul>
+<li>中文：把「高频字母多替身+人地官名专属码元」两种手段叠在一起的文艺复兴高级体制——即使是频率分析高手也无法只凭统计穿透其第 2 层。</li>
+<li>English: The Renaissance high-grade system that stacks homophones plus dedicated codewords for people, places and offices — beyond the reach of bare frequency analysis.</li>
+<li>为什么重要：同音替换叠加人名代码，双重伪装。</li>
+<li>现实哪里用：近代密电。</li>
+<li>怎么被破：代码本泄露或频度暴露即破。</li>
+<li>游戏：<code>nihilist</code></li>
+<li>章节：bacon</li>
+</ul>
+<h3>Codebook（码本（编码簿））</h3>
+<ul>
+<li>中文：词句→码组对照簿（如 JN-25 的 5 位数字码）：与逐字母变换的密码（cipher）相对，「码本 + 每日加表」的双层结构是二战海军密码的标准配置。</li>
+<li>English: A word-to-codegroup book (e.g. JN-25&#39;s five-digit groups): as opposed to letter-by-letter ciphers, the codebook-plus-daily-additive double layer was the standard of WWII naval codes.</li>
+<li>为什么重要：共享的&quot;符号-含义&quot;对照表，是代码的核心。</li>
+<li>现实哪里用：外交与军事代码。</li>
+<li>怎么被破：代码本被截获即全败——所以历史上才有&quot;一次性密码本&quot;。</li>
+<li>游戏：<code>jn25</code></li>
+<li>章节：midway, venona</li>
+</ul>
+<h3>Navajo Code Talkers（纳瓦霍语密码通话员）</h3>
+<ul>
+<li>中文：二战美军以纳瓦霍语为基底的「语言密码」：无文字、语法极复杂的语言自带壁垒，再叠 400 条军用词汇码（坦克=乌龟、潜艇=铁鱼）——日军截收到终战未能破译；1968 解密，2001 年 Original 29 获国会金质奖章。</li>
+<li>English: The WWII US military&#39;s language cipher: an unwritten, grammatically forbidding native language as the barrier, stacked with ~400 military codewords (tank=turtle, submarine=iron fish). Japan never broke it; declassified 1968, the Original 29 received Congressional Gold Medals in 2001.</li>
+<li>为什么重要：二战用纳瓦霍语做代码，敌人无法理解，实际未被破。</li>
+<li>现实哪里用：太平洋战场的通信。</li>
+<li>怎么被破：靠语言不通，属代码；被破的是人员而非算法。</li>
+<li>游戏：<code>navajo-talker</code></li>
+<li>章节：midway</li>
+</ul>
+<h3>Red Army Radio Cipher（红军电报密码）</h3>
+<ul>
+<li>中文：20 世纪 30 年代中国工农红军无线电密码：自编密语表 + 手工换码，配合机要译电；破译方面则以曾希圣为代表的无线电侦察队伍从国军惯用重复电文中还原情报，是「自己用密码、同时破对方密码」的双线样本。</li>
+<li>English: Red Army radio ciphers of 1930s China: hand-built code tables plus manual transposition, with a signals-intelligence corps (Zeng Xisheng) reconstructing enemy traffic from habitual repetitions — both encrypting and breaking at once.</li>
+<li>为什么重要：苏联 30-40 年代的单表代码，靠人为纪律维持安全。</li>
+<li>现实哪里用：苏联红军通信。</li>
+<li>怎么被破：被布莱切利园破译，根源是复用与操作失误。</li>
+<li>章节：modern</li>
+</ul>
+<h2>关联时代 / 人物 / 游戏</h2>
+<p><strong>关联时代</strong>（轴1 编年叙事）</p>
+<ul>
+<li><a href="/eras/e02-classical/">古典希腊罗马</a></li>
+<li><a href="/eras/e04-arabic-golden-age/">阿拉伯黄金时代</a></li>
+<li><a href="/eras/e06-renaissance/">文艺复兴与宗教改革</a></li>
+<li><a href="/eras/e09-ww1/">第一次世界大战</a></li>
+<li><a href="/eras/e11-ww2/">第二次世界大战</a></li>
+<li><a href="/eras/e12-cold-war-info-theory/">冷战与信息论转折</a></li>
+<li><a href="/eras/e13-public-key/">公钥革命</a></li>
+</ul>
+<p><strong>关联人物</strong>（人物志）</p>
+<ul>
+<li><a href="/people/caesar/">凯撒</a></li>
+<li><a href="/people/bacon/">培根</a></li>
+<li><a href="/people/trithemius/">约翰内斯·特里特米乌斯</a></li>
+<li><a href="/people/bellaso/">焦万·巴蒂斯塔·贝拉索</a></li>
+<li><a href="/people/bazeries/">艾蒂安·巴泽里</a></li>
+</ul>
+<p><strong>关联游戏</strong>（站内可玩 · 游戏 ID）</p>
+<ul>
+<li><code>acrostic</code> · 藏头诗密信</li>
+<li><code>affine</code> · 仿射密码</li>
+<li><code>bacon</code> · 培根密码机</li>
+<li><code>book-cipher</code> · 书密码实战</li>
+<li><code>caesar</code> · 凯撒解码</li>
+<li><code>codebreak</code> · 大师密码</li>
+<li><code>detective</code> · 密码侦探</li>
+<li><code>fanqie</code> · 反切码军情室</li>
+<li><code>jn25</code> · JN-25 破译机</li>
+<li><code>navajo-talker</code> · 纳瓦霍传令兵</li>
+<li><code>nihilist</code> · 尼希尔斯特</li>
+<li><code>substitution</code> · 替换密码</li>
+</ul>
+  <section class="src"><h2>出处</h2><p class="muted">待补证（本条尚未核证）</p></section>
+  <section class="rel"><h2>关联</h2><ul class="rellist"><li><a href="/events/event-caesar-cipher/">凯撒密码用于军令</a><i>事件</i></li><li><a href="/events/event-adelberti-1718/">普莱费尔密码</a><i>事件</i></li></ul></section>
+</article>
+</main>
+<footer class="ft">
+  <p>内容源自 <a href="https://github.com/poyinet/cryptography-decode-history">cryptography-decode-history</a>（知识源）· 纯文字出处，零外链正文</p>
+  <p><a href="/sitemap.xml">sitemap</a> · <a href="/about/">关于</a></p>
+</footer>
+
+</body>
+</html>
