@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>crypto.poyi.net · 密码学知识站（建设中）</title>
+<meta name="description" content="密码学知识站：三维知识晶格，按时代 / 技术 / 人物 / 物证 / 术语 / 标准多维展示，中英同步。">
+<meta name="theme-color" content="#0a0a12">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<style>
+  :root{--bg:#0a0a12;--fg:#e8e8f0;--dim:#8a8aa0;--cy:#00f0ff;--mg:#ff2d95}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(1200px 600px at 50% -10%,#16203a 0%,var(--bg) 60%);color:var(--fg);
+    font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;padding:24px}
+  .box{max-width:640px;text-align:center}
+  h1{font-size:clamp(28px,6vw,48px);margin:0 0 6px;letter-spacing:.02em;
+    background:linear-gradient(92deg,var(--cy),var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .en{font-size:12px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:26px}
+  p{line-height:1.85;color:#b8c6da;font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:26px;text-align:left}
+  .c{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;background:rgba(255,255,255,.03)}
+  .c h2{font-size:14px;margin:0 0 6px;color:var(--cy)}
+  .c small{color:var(--dim);font-size:11.5px;line-height:1.6;display:block}
+  .lattice{margin:26px auto 0;width:180px;height:180px;position:relative}
+  .lattice i{position:absolute;width:7px;height:7px;border-radius:2px;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 3.4s ease-in-out infinite}
+  @keyframes p{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.7);opacity:1}}
+  .foot{margin-top:30px;font-size:11.5px;color:var(--dim)}
+  a{color:var(--cy)}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="lattice" id="lat"></div>
+  <h1>密码学知识站</h1>
+  <div class="en">crypto.poyi.net · under construction</div>
+  <p>本站是「破译 DECODE ARCADE」知识体系的知识面：把三千年的密码学按
+     <b>时代 / 技术 / 人物 / 物证 / 术语 / 标准</b> 六个维度铺开，逐层钻取，可检索、可溯源、可按学习路径通读。
+     知识源唯一，产物自动发布。</p>
+  <div class="cards">
+    <div class="c"><h2>三维知识晶格</h2><small>19 时代 × 24 技术域 × 实体层，交叉索引</small></div>
+    <div class="c"><h2>多维多层次</h2><small>时代 / 域 / 应用 / 威胁模型 / 难度 / 层级 六轴标注</small></div>
+    <div class="c"><h2>中英同步</h2><small>每条内容双语对齐，术语别名互通</small></div>
+    <div class="c"><h2>可溯源</h2><small>每条实体都有可核查的纯文字出处</small></div>
+  </div>
+  <div class="foot">内容来源：<code>cryptography-decode-history</code> 知识源仓 · 持续构建中<br>
+    主站 <a href="https://poyi.net">poyi.net</a>（密码学 3D 闯关游戏）</div>
+</div>
+<script>
+  var lat = document.getElementById('lat');
+  for (var i = 0; i < 24; i++) {
+    var el = document.createElement('i');
+    var a = i / 24 * Math.PI * 2, r = 60 + (i % 3) * 14;
+    el.style.left = (90 + Math.cos(a) * r - 3.5) + 'px';
+    el.style.top = (90 + Math.sin(a) * r - 3.5) + 'px';
+    el.style.animationDelay = (i * 0.13) + 's';
+    el.style.background = i % 7 === 3 ? '#ff2d95' : i % 7 === 5 ? '#9dff3e' : '#00f0ff';
+    el.style.boxShadow = '0 0 10px ' + el.style.background;
+    lat.appendChild(el);
+  }
+</script>
+</body>
+</html>
